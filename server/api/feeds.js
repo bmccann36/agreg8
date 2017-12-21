@@ -7,12 +7,12 @@ var twitter = new Twitter(keys);
 let tweets;
 
 //Callback functions
-var error = function (err, response, body) {
-  console.log(err);
-};
-var success = function (data) {
-  return JSON.parse(data)
-};
+// var error = function (err, response, body) {
+//   console.log(err);
+// };
+// var success = function (data) {
+//   return JSON.parse(data)
+// };
 
 
 // twitter.getUserTimeline({ screen_name: 'JeffTweedy', count: '2' }, error, success);
@@ -21,16 +21,21 @@ var success = function (data) {
 
 router.get('/', (req, res, next) => {
   twitter.getUserTimeline({ screen_name: 'JeffTweedy', count: '2'}, error, success)
-  .then(()=> console.log('done'))
 
+  function error(){
+
+  }
+  function success(data){
+    res.send(data)
+  }
   // .catch(next)
 })
 
-function getTweetsAsync() {
-  return new Promise(function (resolve, reject) {
-    twitter.getUserTimeline({ screen_name: 'JeffTweedy', count: '2' },error, success)
+// function getTweetsAsync() {
+//   return new Promise(function (resolve, reject) {
+//     twitter.getUserTimeline({ screen_name: 'JeffTweedy', count: '2' },error, success)
 
-}
+// }
 
 // function readFileAsync (file, encoding) {
 //   return new Promise(function (resolve, reject) {
